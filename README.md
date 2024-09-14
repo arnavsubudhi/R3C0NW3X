@@ -16,13 +16,14 @@ R3C0NW3X is a fully automated pentesting tool designed to streamline the process
 
 ### Prerequisites
 Before using **R3C0NW3X**, ensure you have the following:
-- **Python 3.x**
-- **Git**
-- Any additional dependencies listed in the `requirements.txt` file
+- **Python 3**
+- **Any additional dependencies listed in the `requirements.txt` file**
 
-### Step 1: Clone the Repository
-Start by cloning the R3C0NW3X repository:
+### Usage
 
 ```bash
 git clone https://github.com/yourusername/R3C0NW3X.git
 cd R3C0NW3X
+pip install -r requirements.txt or pip3 install -r requirements.txt
+python3 r3c0nw3x.py
+
