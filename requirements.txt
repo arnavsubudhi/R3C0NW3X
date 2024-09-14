@@ -1,0 +1,4 @@
+paramiko==3.4.1
+pwn==1.0
+pwntools==4.13.0
+Requests==2.32.3
