@@ -34,6 +34,7 @@ def weapon():
     choice = input("Do you have Searchsploit installed (y/n): ")
 
     if choice == "n":
+        print("You need searchsploit to run this!! PLease install!!")
         return
 
     query = input(
