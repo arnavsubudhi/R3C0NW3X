@@ -29,5 +29,12 @@ pip install -r requirements.txt or pip3 install -r requirements.txt
 python3 r3c0nw3x.py
 ```
 
+## Developers
+
+R3C0NW3X is developed by:
+
+- [Arnav Subudhi](https://www.linkedin.com/in/arnavsubudhi)  
+- [Kishalay Ghosh](https://www.linkedin.com/in/kishalayghosh53/)
+
 
 
