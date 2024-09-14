@@ -3,7 +3,6 @@ import os
 
 from recon.locate_ip import locate_main
 from recon.locate_open_port_and_services import locate_open_port_and_services
-from recon.wordlist_generator import cupp
 
 
 def recon():
@@ -31,6 +30,25 @@ def recon():
             break
 
 
+def weapon():
+    choice = input("Do you have Searchsploit installed (y/n): ")
+
+    if choice == "n":
+        return
+
+    query = input(
+        "Enter the service-name which you want to exploit (also mention the version number if possible): "
+    )
+
+    subprocess.run(["searchsploit", query])
+
+    patch = input("Enter the patch nummber which you want to download: ")
+
+    subprocess.run(["searchsploit", "-m", patch])
+
+    input("Completed!! Press Enter to continue")
+
+
 def main():
 
     while True:
@@ -44,6 +62,9 @@ def main():
 
         if choice == "1":
             recon()
+
+        elif choice == "2":
+            weapon()
 
         elif choice == "4":
             return
