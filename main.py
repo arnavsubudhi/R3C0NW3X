@@ -1,13 +1,14 @@
 import subprocess
-import os
 
 from recon.locate_ip import locate_main
 from recon.locate_open_port_and_services import locate_open_port_and_services
 
+from exploitation.ssh_bruteforce import ssh_exploit
+from exploitation.sub_domain_bruteforce import subenum
+
 
 def recon():
     while True:
-        os.system("clear")
 
         choice = int(
             input(
@@ -50,6 +51,31 @@ def weapon():
     input("Completed!! Press Enter to continue")
 
 
+def exploit():
+
+    while True:
+
+        choice = int(
+            input(
+                "1. SSH Brute-force\n2. Sub-domain Brute-force\n3. Directory Brute-force\n4. Back to main menu: "
+            )
+        )
+
+        if choice == 1:
+            ssh_exploit.main()
+            input("Completed!! Press Enter to continue")
+
+        elif choice == 2:
+            subenum.main()
+            input("Completed!! Press Enter to continue")
+        elif choice == 3:
+            print("This feature is in-progress!!")
+        elif choice == 4:
+            break
+        else:
+            print("Wrong Input!! Please try again")
+
+
 def main():
 
     while True:
@@ -59,25 +85,19 @@ def main():
         print("3. Exploitation")
         print("4. Quit")
 
-        choice = input("Enter the number of your choice: ")
+        choice = int(input("Enter the number of your choice: "))
 
-        if choice == "1":
+        if choice == 1:
             recon()
 
-        elif choice == "2":
+        elif choice == 2:
             weapon()
 
-        elif choice == "4":
+        elif choice == 3:
+            exploit()
+
+        elif choice == 4:
             return
-    """
-    elif choice == '2':
-        subprocess.run(['python', '2.py'])
-    elif choice == '3':
-        subprocess.run(['python', '3.py'])
-    
-    else:
-        print("Invalid choice. Please select 1, 2, or 3.")
-    """
 
 
 if __name__ == "__main__":
