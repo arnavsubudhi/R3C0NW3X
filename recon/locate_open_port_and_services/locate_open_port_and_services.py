@@ -1,3 +1,4 @@
+import os
 import subprocess
 import socket
 from concurrent.futures import ThreadPoolExecutor
@@ -34,16 +35,17 @@ def scanning_ports(ip, delay, max_threads):
 
 def get_host_address_range(ip_range):
     """Extract network address and host range from IP addresses."""
+
     def split_ip(ip):
-        parts = ip.split('.')
-        return '.'.join(parts[:3]) + '.', parts[3]
+        parts = ip.split(".")
+        return ".".join(parts[:3]) + ".", parts[3]
 
     network_addr, first_host = split_ip(ip_range[0])
     network_addr1, last_host = split_ip(ip_range[1])
 
     if network_addr != network_addr1:
         raise ValueError("IP range does not have the same network address.")
-    
+
     return network_addr, first_host, last_host
 
 
@@ -53,7 +55,11 @@ def ping_hosts(network_addr, first_host, last_host):
     for i in range(int(first_host), int(last_host) + 1):
         ip_to_ping = f"{network_addr}{i}"
         try:
-            process = subprocess.run(["ping", "-c", "1", "-W", "1", ip_to_ping], capture_output=True, text=True)
+            process = subprocess.run(
+                ["ping", "-c", "1", "-W", "1", ip_to_ping],
+                capture_output=True,
+                text=True,
+            )
             if "ttl" in process.stdout.lower():
                 print(f"Host {ip_to_ping} is UP")
                 opn_hosts.append(ip_to_ping)
@@ -64,14 +70,16 @@ def ping_hosts(network_addr, first_host, last_host):
     return opn_hosts
 
 
-
 def main():
-    
+
+    os.system("clear")
     print("Class C IP addresses accepted.")
 
     try:
-        choice = input("Will you be working with a single IP address? Enter 'y' to say yes: ")
-        if choice.lower() == 'y':
+        choice = input(
+            "Will you be working with a single IP address? Enter 'y' to say yes: "
+        )
+        if choice.lower() == "y":
             target = input("Enter the IP address or the host name: ")
             try:
                 first_ip = last_ip = socket.gethostbyname(target)
@@ -87,23 +95,29 @@ def main():
         print(f"Start time: {start_time}\n")
 
         try:
-            network_addr, first_host, last_host = get_host_address_range((first_ip, last_ip))
+            network_addr, first_host, last_host = get_host_address_range(
+                (first_ip, last_ip)
+            )
         except ValueError as ve:
             print(ve)
             return
 
         opn_hosts = ping_hosts(network_addr, first_host, last_host)
-        print(f"{len(opn_hosts)} hosts up out of {int(last_host) - int(first_host) + 1}")
+        print(
+            f"{len(opn_hosts)} hosts up out of {int(last_host) - int(first_host) + 1}"
+        )
 
         for ip in opn_hosts:
             print(f"\nScanning open ports on {ip}...")
-            scanning_ports(ip, delay=100000, max_threads=1000000)  # Adjust max_threads based on your system capacity
+            scanning_ports(
+                ip, delay=100000, max_threads=1000000
+            )  # Adjust max_threads based on your system capacity
 
         end_time = datetime.now()
         print("\nCompleted Process...")
         print(f"End time: {end_time}")
         print(f"Total time: {end_time - start_time}")
-    
+
     except KeyboardInterrupt:
         print("\nProcess interrupted by the user. Exiting gracefully...")
         return

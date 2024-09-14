@@ -1,15 +1,24 @@
-from . import bulkipscanner,singleipscanner
+import os
+
+from . import bulkipscanner, singleipscanner
+
 
 def main():
 
     while True:
-        choice=int(input("1. Single IP Scanning\n2. Multi IP Scanning\n3. Back to main menu\nEnter your choice: "))
+        os.system("clear")
 
-        if choice==1:
-            bulkipscanner.main()
-        elif choice==2:
+        choice = int(
+            input(
+                "1. Single IP Scanning\n2. Multi IP Scanning\n3. Back to main menu\nEnter your choice: "
+            )
+        )
+
+        if choice == 1:
             singleipscanner.main()
-        elif choice==3:
+        elif choice == 2:
+            bulkipscanner.main()
+        elif choice == 3:
             return
         else:
             print("Error")

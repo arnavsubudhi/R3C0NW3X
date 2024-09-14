@@ -1,34 +1,4 @@
 #!/usr/bin/python3
-#
-#  [Program]
-#
-#  CUPP
-#  Common User Passwords Profiler
-#
-#  [Author]
-#
-#  Muris Kurgas aka j0rgan
-#  j0rgan [at] remote-exploit [dot] org
-#  http://www.remote-exploit.org
-#  http://www.azuzi.me
-#
-#  [License]
-#
-#  This program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 3 of the License, or
-#  any later version.
-#
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with this program; if not, write to the Free Software
-#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
-#  See 'LICENSE' for more information.
 
 import argparse
 import configparser
@@ -155,30 +125,6 @@ def print_to_file(filename, unique_list_finished):
     )
 
 
-def print_cow():
-    print(" ___________ ")
-    print(" \033[07m  cupp.py! \033[27m                # \033[07mC\033[27mommon")
-    print("      \                     # \033[07mU\033[27mser")
-    print("       \   \033[1;31m,__,\033[1;m             # \033[07mP\033[27masswords")
-    print(
-        "        \  \033[1;31m(\033[1;moo\033[1;31m)____\033[1;m         # \033[07mP\033[27mrofiler"
-    )
-    print("           \033[1;31m(__)    )\ \033[1;m  ")
-    print(
-        "           \033[1;31m   ||--|| \033[1;m\033[05m*\033[25m\033[1;m      [ Muris Kurgas | j0rgan@remote-exploit.org ]"
-    )
-    print(28 * " " + "[ Mebus | https://github.com/Mebus/]\r\n")
-
-
-def version():
-    """Display version"""
-
-    print("\r\n	\033[1;31m[ cupp.py ]  " + __version__ + "\033[1;m\r\n")
-    print("	* Hacked up by j0rgan - j0rgan@remote-exploit.org")
-    print("	* http://www.remote-exploit.org\r\n")
-    print("	Take a look ./README.md file for more info about the program\r\n")
-
-
 def improve_dictionary(file_to_open):
     """Implementation of the -w option. Improve a dictionary by
     interactively questioning the user."""
@@ -282,7 +228,7 @@ def improve_dictionary(file_to_open):
             x
         ) in (
             unique_lista
-        ):  # if you want to add more leet chars, you will need to add more lines in cupp.cfg too...
+        ):  # if you want to add more leet chars, you will need to add more lines in generator.cfg too...
             x = make_leet(x)  # convert to leet
             unique_leet.append(x)
 
@@ -296,7 +242,7 @@ def improve_dictionary(file_to_open):
         if len(x) > CONFIG["global"]["wcfrom"] and len(x) < CONFIG["global"]["wcto"]
     ]
 
-    print_to_file(file_to_open + ".cupp.txt", unique_list_finished)
+    print_to_file(file_to_open + ".generator.txt", unique_list_finished)
 
     fajl.close()
 
@@ -374,7 +320,7 @@ def interactive():
 
 
 def generate_wordlist_from_profile(profile):
-    """ Generates a wordlist from a given profile """
+    """Generates a wordlist from a given profile"""
 
     chars = CONFIG["global"]["chars"]
     years = CONFIG["global"]["years"]
@@ -691,7 +637,7 @@ def generate_wordlist_from_profile(profile):
             x
         ) in (
             unique_lista
-        ):  # if you want to add more leet chars, you will need to add more lines in cupp.cfg too...
+        ):  # if you want to add more leet chars, you will need to add more lines in generator.cfg too...
 
             x = make_leet(x)  # convert to leet
             unique_leet.append(x)
@@ -801,7 +747,7 @@ def download_wordlist():
 
 
 def download_wordlist_http(filedown):
-    """ do the HTTP download of a wordlist """
+    """do the HTTP download of a wordlist"""
 
     mkdir_if_not_exists("dictionaries")
 
@@ -1023,15 +969,13 @@ def mkdir_if_not_exists(dire):
 
 # the main function
 def main():
-    """Command-line interface to the cupp utility"""
 
-    read_config(os.path.join(os.path.dirname(os.path.realpath(__file__)), "cupp.cfg"))
+    read_config(
+        os.path.join(os.path.dirname(os.path.realpath(__file__)), "generator.cfg")
+    )
 
     parser = get_parser()
     args = parser.parse_args()
-
-    if not args.quiet:
-        print_cow()
 
     if args.version:
         version()
