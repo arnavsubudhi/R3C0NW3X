@@ -7,6 +7,20 @@ from exploitation.ssh_bruteforce import ssh_exploit
 from exploitation.sub_domain_bruteforce import subenum
 
 
+def banner():
+
+    print(
+        r"""
+            mmmmm   mmmm    mmm   mmmm  mm   mm     m  mmmm  m    m
+            #   "# "   "# m"   " m"  "m #"m  ##  #  # "   "#  #  # 
+            #mmmm"   mmm" #      #    # # #m #" #"# #   mmm"   ##  
+            #   "m     "# #      #    # #  # # ## ##"     "#  m""m 
+            #    " "mmm#"  "mmm"  #mm#  #   ## #   #  "mmm#" m"  "m
+
+"""
+    )
+
+
 def recon():
     while True:
 
@@ -77,6 +91,8 @@ def exploit():
 
 
 def main():
+
+    banner()
 
     while True:
         print("Choose an option:")
