@@ -35,7 +35,7 @@ def weapon():
     choice = input("Do you have Searchsploit installed (y/n): ")
 
     if choice == "n":
-        print("You need searchsploit to run this!! PLease install!!")
+        print("\n\nYou need searchsploit to run this!! PLease install!!\n\n")
         return
 
     query = input(
@@ -44,7 +44,7 @@ def weapon():
 
     subprocess.run(["searchsploit", query])
 
-    patch = input("Enter the patch nummber which you want to download: ")
+    patch = input("Enter the file number which you want to download: ")
 
     subprocess.run(["searchsploit", "-m", patch])
 
@@ -69,7 +69,7 @@ def exploit():
             subenum.main()
             input("Completed!! Press Enter to continue")
         elif choice == 3:
-            print("This feature is in-progress!!")
+            print("\n\nThis feature is in-progress!!\n\n")
         elif choice == 4:
             break
         else:
@@ -83,7 +83,8 @@ def main():
         print("1. Recon")
         print("2. Weaponisation")
         print("3. Exploitation")
-        print("4. Quit")
+        print("4. Contact developer")
+        print("5. Quit")
 
         choice = int(input("Enter the number of your choice: "))
 
@@ -97,6 +98,11 @@ def main():
             exploit()
 
         elif choice == 4:
+            print(
+                "\n\nFor any error or bugs mail to \n\nkishalayghosh53@gmail.com or arnavsubudhi20@gmail.com\n\n"
+            )
+
+        elif choice == 5:
             return
 
 
