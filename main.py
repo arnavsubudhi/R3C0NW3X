@@ -23,7 +23,7 @@ def recon():
             locate_open_port_and_services.main()
             input("Completed!! Press Enter to continue")
         elif choice == 3:
-            pass
+            print("\n\nThis feature is in-progress!!\n\n")
         elif choice == 4:
             subprocess.run(["python3", "generator.py", "-i"])
             input("Completed!! Press Enter to continue")
